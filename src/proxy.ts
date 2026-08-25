@@ -10,8 +10,9 @@ const rateLimitMap = new Map<string, { count: number; timestamp: number }>();
 const RATE_LIMIT_WINDOW_MS = 60000; // 1 minuto
 const MAX_REQUESTS_PER_WINDOW = 100;
 
-export function middleware(request: NextRequest) {
-  const ip = request.ip || request.headers.get("x-forwarded-for") || "unknown";
+export function proxy(request: NextRequest) {
+  // Extraemos la IP de los headers ya que request.ip está deprecado en la nueva API
+  const ip = request.headers.get("x-forwarded-for") || "unknown";
 
   // 1. Bloqueo de IPs
   if (BLOCKED_IPS.includes(ip)) {
@@ -51,7 +52,7 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-// Configurar el matcher para que el middleware aplique solo donde sea necesario
+// Configurar el matcher para que el proxy aplique solo donde sea necesario
 export const config = {
   matcher: [
     /*
