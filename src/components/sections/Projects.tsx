@@ -33,10 +33,10 @@ const projects = [
 
 export default function Projects() {
   return (
-    <Section id="proyectos" title="02 proyectos" subtitle="Proyectos en producción y arquitectura de software.">
+    <Section id="proyectos" title="03 Proyectos" subtitle="Proyectos en producción y arquitectura de software.">
       <div className="space-y-24">
         {projects.map((project, index) => (
-          <motion.div 
+          <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -48,8 +48,8 @@ export default function Projects() {
             <div className="w-full lg:w-1/2 relative group">
               <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 glass shadow-2xl">
-                <Image 
-                  src={project.image} 
+                <Image
+                  src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -69,7 +69,7 @@ export default function Projects() {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">
                 {project.title}
               </h3>
-              
+
               <div className="glass p-6 rounded-xl border border-white/5 shadow-lg relative z-10 w-full lg:-ml-12 lg:mr-0">
                 <p className="text-foreground/80 leading-relaxed text-lg">
                   {project.description}

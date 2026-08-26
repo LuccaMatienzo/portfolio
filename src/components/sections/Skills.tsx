@@ -24,9 +24,9 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <Section id="stack" title="03 stack" subtitle="Conocimientos técnicos, herramientas y habilidades de gestión.">
+    <Section id="stack" title="04 Stack" subtitle="Conocimientos técnicos, herramientas y habilidades de gestión.">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+
         {skillCategories.map((category, index) => (
           <motion.div
             key={category.title}
@@ -38,7 +38,7 @@ export default function Skills() {
           >
             {category.icon}
             <h3 className="text-2xl font-bold text-foreground mb-6">{category.title}</h3>
-            
+
             <ul className="space-y-4">
               {category.skills.map((skill) => (
                 <li key={skill} className="flex items-start">

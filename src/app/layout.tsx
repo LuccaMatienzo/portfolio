@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -8,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Lucca Matienzo - Portfolio",
-  description: "Portfolio profesional de Lucca Matienzo, Desarrollador Web Full Stack",
+  title: "Lucca Nicolás Matienzo - Computer Engineer",
+  description: "Portafolio profesional de Lucca Nicolás Matienzo. Ingeniero en Computación, Full Stack Developer y especialista en Infraestructura IT y Redes.",
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -17,9 +18,9 @@ export const metadata: Metadata = {
       { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/icon-192x192.png' },
-    ],
-  },
+      { url: '/icon-192x192.png' }
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -28,8 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="es" suppressHydrationWarning className="scroll-smooth">
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
