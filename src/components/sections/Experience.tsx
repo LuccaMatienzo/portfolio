@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import Section from "../ui/Section";
@@ -29,21 +30,42 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <Section id="experiencia" title="01 experiencia" subtitle="Trayectoria profesional y roles desempeñados.">
-      <div className="max-w-4xl mx-auto space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
+      <div ref={ref} className="max-w-4xl mx-auto space-y-16 relative">
+        
+        {/* Background static line */}
+        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-white/10 md:left-1/2 md:-translate-x-1/2"></div>
+        
+        {/* Animated filling line */}
+        <motion.div 
+          style={{ scaleY, transformOrigin: "top" }} 
+          className="absolute left-6 top-0 bottom-0 w-0.5 bg-primary md:left-1/2 md:-translate-x-1/2 z-0" 
+        />
         
         {experiences.map((exp, index) => (
           <motion.div 
             key={exp.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="relative flex flex-col md:flex-row items-start md:items-center justify-between md:odd:flex-row-reverse group"
           >
-            {/* Icon / Logo */}
-            <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-background bg-white shadow-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 relative overflow-hidden">
+            {/* Dot/Logo */}
+            <div className="absolute left-6 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center justify-center w-12 h-12 rounded-full border-4 border-background bg-white shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)] shrink-0 z-10 overflow-hidden">
               {exp.logo ? (
                 <Image src={exp.logo} alt={exp.company} fill className="object-contain p-1" sizes="48px" />
               ) : (
@@ -51,8 +73,8 @@ export default function Experience() {
               )}
             </div>
             
-            {/* Card */}
-            <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 md:p-8 rounded-xl border border-white/5 shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-primary/5">
+            {/* Card Content */}
+            <div className="ml-16 md:ml-0 w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass p-6 md:p-8 rounded-xl border border-white/5 shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10">
               <div className="flex flex-col space-y-2 mb-4">
                 <h3 className="text-xl md:text-2xl font-bold text-foreground">{exp.role}</h3>
                 <h4 className="text-lg font-medium text-primary">{exp.company}</h4>

@@ -12,8 +12,10 @@ const projects = [
     description: "Desarrollo completo de cero a despliegue productivo. Arquitectura diseñada para ser escalable, implementando buenas prácticas de ingeniería de software, automatización de procesos y optimización de recursos en la nube.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop", // Placeholder
     tags: ["React", "Node.js", "PostgreSQL", "Docker", "Traefik", "CI/CD"],
-    github: "#",
-    demo: "#",
+    links: [
+      { label: "Visitar Landing", url: "https://disfracesly.com.ar/" },
+      { label: "Admin", url: "https://disfracesly.com.ar/admin" }
+    ],
     featured: true
   },
   {
@@ -22,15 +24,16 @@ const projects = [
     description: "Plataforma interna para el seguimiento y mantenimiento preventivo de infraestructura de red. Integración con GLPI y herramientas de monitoreo en tiempo real.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", // Placeholder
     tags: ["Python", "Vue.js", "MySQL", "API REST"],
-    github: "#",
-    demo: "#",
+    links: [
+      { label: "Ver Demo", url: "#" }
+    ],
     featured: false
   }
 ];
 
 export default function Projects() {
   return (
-    <Section id="proyectos" title="02 trabajo" subtitle="Proyectos en producción y arquitectura de software.">
+    <Section id="proyectos" title="02 proyectos" subtitle="Proyectos en producción y arquitectura de software.">
       <div className="space-y-24">
         {projects.map((project, index) => (
           <motion.div 
@@ -83,14 +86,12 @@ export default function Projects() {
               </div>
 
               <div className="flex gap-6 pt-4 w-full lg:pl-12">
-                <a href={project.github} className="text-foreground/60 hover:text-primary transition-colors flex items-center gap-2 font-medium">
-                  <GitBranch size={20} />
-                  <span>Código</span>
-                </a>
-                <a href={project.demo} className="text-foreground/60 hover:text-primary transition-colors flex items-center gap-2 font-medium">
-                  <ExternalLink size={20} />
-                  <span>Visitar</span>
-                </a>
+                {project.links?.map((link, i) => (
+                  <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                    {link.label === "Admin" ? <Database size={20} /> : <ExternalLink size={20} />}
+                    <span>{link.label}</span>
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
