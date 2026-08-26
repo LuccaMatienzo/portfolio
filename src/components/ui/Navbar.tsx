@@ -6,11 +6,11 @@ import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { name: "Inicio", href: "#inicio" },
-  { name: "Sobre Mí", href: "#sobre-mi" },
-  { name: "Habilidades", href: "#habilidades" },
-  { name: "Proyectos", href: "#proyectos" },
-  { name: "Contacto", href: "#contacto" },
+  { name: "sobre mí", href: "#inicio" },
+  { name: "experiencia", href: "#experiencia" },
+  { name: "proyectos", href: "#proyectos" },
+  { name: "stack", href: "#stack" },
+  { name: "contacto", href: "#contacto" },
 ];
 
 export default function Navbar() {

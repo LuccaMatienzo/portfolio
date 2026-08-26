@@ -1,69 +1,99 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ExternalLink, GitBranch, Server, Database, Code } from "lucide-react";
 import Section from "../ui/Section";
-import { ExternalLink } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
 
-// Estos datos luego podrían venir de Supabase
-const projectsData = [
+const projects = [
   {
     id: 1,
-    title: "E-Commerce Escalar",
-    description: "Plataforma de comercio electrónico con Next.js, Stripe y Tailwind. Optimización extrema de rendimiento y SEO.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "PostgreSQL"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Tesis de Grado: Desarrollo e Infraestructura",
+    description: "Desarrollo completo de cero a despliegue productivo. Arquitectura diseñada para ser escalable, implementando buenas prácticas de ingeniería de software, automatización de procesos y optimización de recursos en la nube.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop", // Placeholder
+    tags: ["React", "Node.js", "PostgreSQL", "Docker", "Traefik", "CI/CD"],
+    github: "#",
+    demo: "#",
+    featured: true
   },
   {
     id: 2,
-    title: "Sistema de Gestión",
-    description: "Dashboard administrativo con roles y permisos complejos, gráficos en tiempo real y arquitectura de microservicios.",
-    tags: ["React", "Node.js", "Express", "Supabase"],
-    demoUrl: "#",
-    repoUrl: "#",
-  },
+    title: "Sistema de Gestión de Activos IT (Ejemplo)",
+    description: "Plataforma interna para el seguimiento y mantenimiento preventivo de infraestructura de red. Integración con GLPI y herramientas de monitoreo en tiempo real.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", // Placeholder
+    tags: ["Python", "Vue.js", "MySQL", "API REST"],
+    github: "#",
+    demo: "#",
+    featured: false
+  }
 ];
 
 export default function Projects() {
   return (
-    <Section id="proyectos" className="bg-surface/30">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Mis Proyectos</h2>
-        <div className="w-20 h-1 bg-primary mx-auto rounded"></div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {projectsData.map((project) => (
-          <div key={project.id} className="glass rounded-2xl overflow-hidden group">
-            {/* Imagen del proyecto (placeholder por ahora) */}
-            <div className="h-48 md:h-64 bg-primary/10 relative overflow-hidden flex items-center justify-center border-b border-primary/20">
-              <span className="text-foreground/30">Imagen / Preview</span>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <div className="flex gap-4">
-                  <a href={project.demoUrl} className="bg-primary text-background p-2 rounded-full hover:scale-110 transition-transform">
-                    <ExternalLink size={20} />
-                  </a>
-                  <a href={project.repoUrl} className="glass p-2 rounded-full hover:scale-110 transition-transform">
-                    <FaGithub size={20} />
-                  </a>
-                </div>
+    <Section id="proyectos" title="02 trabajo" subtitle="Proyectos en producción y arquitectura de software.">
+      <div className="space-y-24">
+        {projects.map((project, index) => (
+          <motion.div 
+            key={project.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className={`flex flex-col ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center`}
+          >
+            {/* Image Side */}
+            <div className="w-full lg:w-1/2 relative group">
+              <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 glass shadow-2xl">
+                <Image 
+                  src={project.image} 
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
             </div>
-            
-            <div className="p-6 md:p-8">
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
-              <p className="text-foreground/70 mb-6 line-clamp-3">
-                {project.description}
-              </p>
+
+            {/* Content Side */}
+            <div className="w-full lg:w-1/2 flex flex-col items-start text-left space-y-6">
+              {project.featured && (
+                <span className="text-primary font-medium tracking-wider text-sm uppercase">
+                  Proyecto Destacado
+                </span>
+              )}
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                {project.title}
+              </h3>
               
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="text-xs font-medium px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20">
+              <div className="glass p-6 rounded-xl border border-white/5 shadow-lg relative z-10 w-full lg:-ml-12 lg:mr-0">
+                <p className="text-foreground/80 leading-relaxed text-lg">
+                  {project.description}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 w-full lg:pl-12">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-foreground/70">
+                    <Code size={14} />
                     {tag}
                   </span>
                 ))}
               </div>
+
+              <div className="flex gap-6 pt-4 w-full lg:pl-12">
+                <a href={project.github} className="text-foreground/60 hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                  <GitBranch size={20} />
+                  <span>Código</span>
+                </a>
+                <a href={project.demo} className="text-foreground/60 hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                  <ExternalLink size={20} />
+                  <span>Visitar</span>
+                </a>
+              </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </Section>
