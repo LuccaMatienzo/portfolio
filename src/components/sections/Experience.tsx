@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
+import Image from "next/image";
 import Section from "../ui/Section";
 
 const experiences = [
@@ -9,6 +10,7 @@ const experiences = [
     id: 1,
     role: "Ingeniero de Proyectos e Infraestructura de Redes",
     company: "SISTELCO S.R.L.",
+    logo: "/sistelco.png",
     date: "Actualidad",
     location: "Tucumán, Argentina",
     description: "Liderazgo y ejecución de proyectos integrales de infraestructura. Diseño de arquitectura de redes, consultoría técnica preventa, elaboración de propuestas técnicas y resolución de incidencias.",
@@ -18,6 +20,7 @@ const experiences = [
     id: 2,
     role: "Técnico en Mesa de Ayuda IT",
     company: "ipsst",
+    logo: "/ipsst.png",
     date: "Experiencia Previa",
     location: "Tucumán, Argentina",
     description: "Soporte técnico integral y gestión de incidentes. Administración de identidades y accesos (IAM), uso avanzado de GLPI y capacitación técnica continua a usuarios.",
@@ -39,9 +42,13 @@ export default function Experience() {
             transition={{ duration: 0.6, delay: index * 0.2 }}
             className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
-            {/* Icon */}
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-primary/20 text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-              <Briefcase size={16} />
+            {/* Icon / Logo */}
+            <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-background bg-white shadow-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 relative overflow-hidden">
+              {exp.logo ? (
+                <Image src={exp.logo} alt={exp.company} fill className="object-contain p-1" sizes="48px" />
+              ) : (
+                <Briefcase size={20} className="text-primary" />
+              )}
             </div>
             
             {/* Card */}
