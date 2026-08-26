@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase } from "lucide-react";
 import Image from "next/image";
 import Section from "../ui/Section";
 
@@ -12,8 +12,8 @@ const experiences = [
     role: "Ingeniero de Proyectos e Infraestructura de Redes",
     company: "SISTELCO S.R.L.",
     logo: "/sistelco.png",
-    date: "Actualidad",
-    location: "Tucumán, Argentina",
+    dateTag: "Marzo 2023 - Actualidad",
+    workType: "Presencial",
     description: "Liderazgo y ejecución de proyectos integrales de infraestructura. Diseño de arquitectura de redes, consultoría técnica preventa, elaboración de propuestas técnicas y resolución de incidencias.",
     tags: ["Consultoría Preventa", "TCP/IP", "Fibra Óptica", "CCTV IP", "Telefonía IP", "Gestión de Proyectos", "Gestión de Activos IT"],
   },
@@ -22,8 +22,8 @@ const experiences = [
     role: "Técnico en Mesa de Ayuda IT",
     company: "ipsst",
     logo: "/ipsst.png",
-    date: "Experiencia Previa",
-    location: "Tucumán, Argentina",
+    dateTag: "Enero 2021 - Febrero 2023",
+    workType: "Presencial",
     description: "Soporte técnico integral y gestión de incidentes. Administración de identidades y accesos (IAM), uso avanzado de GLPI y capacitación técnica continua a usuarios.",
     tags: ["Gestión de Incidentes", "Soporte Técnico", "IAM", "GLPI", "Comunicación", "Trabajo en Equipo"],
   }
@@ -44,55 +44,71 @@ export default function Experience() {
 
   return (
     <Section id="experiencia" title="01 experiencia" subtitle="Trayectoria profesional y roles desempeñados.">
-      <div ref={ref} className="max-w-4xl mx-auto space-y-16 relative">
+      <div ref={ref} className="max-w-4xl mx-auto space-y-12 relative pt-8 pb-12 pl-6 sm:pl-12">
         
         {/* Background static line */}
-        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-white/10 md:left-1/2 md:-translate-x-1/2"></div>
+        <div className="absolute left-6 sm:left-12 top-0 bottom-0 w-0.5 bg-white/10 -translate-x-1/2 rounded-full"></div>
         
         {/* Animated filling line */}
         <motion.div 
           style={{ scaleY, transformOrigin: "top" }} 
-          className="absolute left-6 top-0 bottom-0 w-0.5 bg-primary md:left-1/2 md:-translate-x-1/2 z-0" 
+          className="absolute left-6 sm:left-12 top-0 bottom-0 w-0.5 bg-primary -translate-x-1/2 z-0 rounded-full shadow-[0_0_10px_rgba(var(--primary-rgb),0.8)]" 
         />
         
         {experiences.map((exp, index) => (
           <motion.div 
             key={exp.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="relative flex flex-col md:flex-row items-start md:items-center justify-between md:odd:flex-row-reverse group"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="relative flex items-start group"
           >
-            {/* Dot/Logo */}
-            <div className="absolute left-6 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center justify-center w-12 h-12 rounded-full border-4 border-background bg-white shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)] shrink-0 z-10 overflow-hidden">
+            {/* Dot/Logo Container on the line */}
+            <div className="absolute -left-6 sm:-left-12 -translate-x-1/2 mt-4 flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-background bg-white shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)] z-10 overflow-hidden transition-transform duration-300 group-hover:scale-110">
               {exp.logo ? (
-                <Image src={exp.logo} alt={exp.company} fill className="object-contain p-1" sizes="48px" />
+                <Image 
+                  src={exp.logo} 
+                  alt={exp.company} 
+                  fill 
+                  className="object-cover" 
+                  sizes="(max-width: 768px) 64px, 80px" 
+                />
               ) : (
-                <Briefcase size={20} className="text-primary" />
+                <Briefcase size={24} className="text-primary" />
               )}
             </div>
             
             {/* Card Content */}
-            <div className="ml-16 md:ml-0 w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass p-6 md:p-8 rounded-xl border border-white/5 shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10">
-              <div className="flex flex-col space-y-2 mb-4">
-                <h3 className="text-xl md:text-2xl font-bold text-foreground">{exp.role}</h3>
-                <h4 className="text-lg font-medium text-primary">{exp.company}</h4>
-                <div className="flex flex-wrap gap-4 text-sm text-foreground/60">
-                  <span className="flex items-center gap-1"><Calendar size={14} /> {exp.date}</span>
-                  <span className="flex items-center gap-1"><MapPin size={14} /> {exp.location}</span>
-                </div>
+            <div className="w-full ml-10 sm:ml-16 bg-white/5 backdrop-blur-md p-6 sm:p-10 rounded-2xl border border-white/10 shadow-xl transition-all duration-300 hover:border-primary/40 hover:shadow-primary/5 hover:-translate-y-1 relative overflow-hidden">
+              
+              {/* Large faded number in background */}
+              <div className="absolute top-4 right-6 text-7xl font-bold text-white/5 select-none pointer-events-none">
+                0{index + 1}
+              </div>
+
+              {/* Date & Type Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-5">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                <span>{exp.dateTag}</span>
+                <span className="text-primary/40 text-xs">|</span>
+                <span className="text-foreground/70">{exp.workType}</span>
+              </div>
+
+              <div className="flex flex-col space-y-1 mb-5 relative z-10">
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground">{exp.company}</h3>
+                <h4 className="text-lg font-medium text-primary">{exp.role}</h4>
               </div>
               
-              <p className="text-foreground/70 mb-6">
+              <p className="text-foreground/80 leading-relaxed mb-6 relative z-10">
                 {exp.description}
               </p>
               
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 relative z-10">
                 {exp.tags.map((tag) => (
                   <span 
                     key={tag} 
-                    className="px-3 py-1 text-xs font-medium bg-white/5 border border-white/10 rounded-full text-foreground/80"
+                    className="px-4 py-1.5 text-xs font-medium bg-white/5 border border-white/10 rounded-full text-foreground/80 hover:bg-white/10 transition-colors"
                   >
                     {tag}
                   </span>

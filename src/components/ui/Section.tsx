@@ -25,16 +25,18 @@ export default function Section({ id, title, subtitle, children, className = "" 
         {(title || subtitle) && (
           <div className="mb-16">
             {title && (
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                {title}
-              </h2>
+              <div className="flex items-center gap-4 mb-6">
+                <h2 className="text-lg md:text-xl font-medium text-primary tracking-wide">
+                  {title}
+                </h2>
+                <div className="flex-grow h-px bg-white/10"></div>
+              </div>
             )}
             {subtitle && (
-              <p className="text-lg text-foreground/60 max-w-2xl">
+              <p className="text-xl md:text-2xl font-bold text-foreground">
                 {subtitle}
               </p>
             )}
-            <div className="w-24 h-1 bg-primary mt-6 rounded-full opacity-50"></div>
           </div>
         )}
         {children}

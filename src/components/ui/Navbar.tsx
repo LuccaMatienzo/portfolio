@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { name: "sobre mí", href: "#inicio" },
+  { name: "sobre mí", href: "#sobre-mi" },
   { name: "experiencia", href: "#experiencia" },
   { name: "proyectos", href: "#proyectos" },
   { name: "stack", href: "#stack" },
