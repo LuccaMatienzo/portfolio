@@ -80,35 +80,30 @@ export default function Experience() {
             </div>
             
             {/* Card Content */}
-            <div className="w-full ml-10 sm:ml-16 bg-white/5 backdrop-blur-md p-6 sm:p-10 rounded-2xl border border-white/10 shadow-xl transition-all duration-300 hover:border-primary/40 hover:shadow-primary/5 hover:-translate-y-1 relative overflow-hidden">
+            <div className="w-full ml-10 sm:ml-16 glass p-6 sm:p-10 rounded-2xl border transition-all duration-300 hover:border-primary/40 hover:shadow-primary/5 hover:-translate-y-1 relative overflow-hidden">
               
-              {/* Large faded number in background */}
-              <div className="absolute top-4 right-6 text-7xl font-bold text-white/5 select-none pointer-events-none">
-                0{index + 1}
-              </div>
-
               {/* Date & Type Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-5">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 text-xs sm:text-sm font-medium mb-6">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                <span>{exp.dateTag}</span>
-                <span className="text-primary/40 text-xs">|</span>
+                <span className="text-foreground/70">{exp.dateTag}</span>
+                <span className="text-foreground/30 font-light px-1">|</span>
                 <span className="text-foreground/70">{exp.workType}</span>
               </div>
 
-              <div className="flex flex-col space-y-1 mb-5 relative z-10">
-                <h3 className="text-2xl sm:text-3xl font-bold text-foreground">{exp.company}</h3>
-                <h4 className="text-lg font-medium text-primary">{exp.role}</h4>
+              <div className="flex flex-col space-y-2 mb-6 relative z-10">
+                <h3 className="text-3xl sm:text-4xl font-bold text-foreground">{exp.company}</h3>
+                <h4 className="text-xl font-medium text-primary">{exp.role}</h4>
               </div>
               
-              <p className="text-foreground/80 leading-relaxed mb-6 relative z-10">
+              <p className="text-foreground/80 leading-relaxed mb-8 relative z-10 text-base sm:text-lg">
                 {exp.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 relative z-10">
+              <div className="flex flex-wrap gap-x-6 gap-y-3 relative z-10">
                 {exp.tags.map((tag) => (
                   <span 
                     key={tag} 
-                    className="px-4 py-1.5 text-xs font-medium bg-white/5 border border-white/10 rounded-full text-foreground/80 hover:bg-white/10 transition-colors"
+                    className="text-sm font-semibold text-foreground/70 hover:text-primary transition-colors"
                   >
                     {tag}
                   </span>
