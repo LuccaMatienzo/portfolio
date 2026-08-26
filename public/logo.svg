@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <mask id="mamba-mask">
+      <!-- Fondo de la máscara (Lo blanco se mantiene) -->
+      <rect width="512" height="512" fill="white" />
+      
+      <!-- Ojos (Mirada enfocada Mamba Mentality) -->
+      <polygon points="140,170 215,200 165,220" fill="black" />
+      <polygon points="372,170 297,200 347,220" fill="black" />
+      
+      <!-- División central (Dualidad y referencia al logo 'The Sheath' de Kobe) -->
+      <polygon points="256,165 264,175 260,420 256,440 252,420 248,175" fill="black" />
+      
+      <!-- Hendiduras laterales (Agallas de serpiente / Dinamismo) -->
+      <polygon points="120,290 145,295 190,380" fill="black" />
+      <polygon points="392,290 367,295 322,380" fill="black" />
+    </mask>
+    
+    <style>
+      /* 
+       * Optimización responsiva experta: 
+       * El logo se adapta automáticamente según el tema del dispositivo.
+       * Light mode: Negro Carbón (#1A1A1A)
+       * Dark mode: Oro Lakers (#FDB927)
+       */
+      .mamba-shape { 
+        fill: #1A1A1A; 
+        stroke: #1A1A1A; 
+        stroke-width: 14px; 
+        stroke-linejoin: round; 
+        transition: all 0.3s ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .mamba-shape { 
+          fill: #FDB927; 
+          stroke: #FDB927; 
+        }
+      }
+    </style>
+  </defs>
+
+  <!-- Silueta base de 8 lados (Tributo sutil al #8 de Kobe) -->
+  <path class="mamba-shape" d="M 256,460 L 100,260 L 110,180 L 160,80 L 256,150 L 352,80 L 402,180 L 412,260 Z" mask="url(#mamba-mask)" />
+</svg>
