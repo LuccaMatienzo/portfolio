@@ -23,14 +23,12 @@
   --surface: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode */
-    --background: var(--color-royal-dark);
-    --foreground: var(--color-ivory);
-    --primary: var(--color-gold);
-    --surface: var(--color-royal);
-  }
+.dark {
+  /* Dark Mode */
+  --background: var(--color-royal-dark);
+  --foreground: var(--color-ivory);
+  --primary: var(--color-gold);
+  --surface: var(--color-royal);
 }
 
 body {
@@ -48,9 +46,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .glass {
-    background: rgba(0, 35, 73, 0.3); /* Royal blue con opacidad */
-    border: 1px solid rgba(149, 124, 61, 0.2); /* Borde gold sutil */
-  }
+html.dark .glass {
+  background: rgba(0, 35, 73, 0.3); /* Royal blue con opacidad */
+  border: 1px solid rgba(149, 124, 61, 0.2); /* Borde gold sutil */
 }
