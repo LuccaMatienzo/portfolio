@@ -1,15 +1,19 @@
-import Link from "next/link";
+"use client";
 
-const navLinks = [
-  { name: "sobre mí", href: "#sobre-mi" },
-  { name: "experiencia", href: "#experiencia" },
-  { name: "proyectos", href: "#proyectos" },
-  { name: "stack", href: "#stack" },
-  { name: "contacto", href: "#contacto" },
-];
+import Link from "next/link";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { name: t.nav.about, href: "#sobre-mi" },
+    { name: t.nav.experience, href: "#experiencia" },
+    { name: t.nav.projects, href: "#proyectos" },
+    { name: t.nav.stack, href: "#stack" },
+    { name: t.nav.contact, href: "#contacto" },
+  ];
 
   return (
     <footer className="border-t border-foreground/10 bg-background pt-16 pb-8 mt-20">
@@ -19,13 +23,13 @@ export default function Footer() {
           {/* Left Side: Info & Links */}
           <div className="max-w-md">
             <h2 className="text-xl font-bold text-foreground mb-4">
-              Lucca Nicolás Matienzo<span className="text-primary">.</span>
+              {t.footer.name}<span className="text-primary">.</span>
             </h2>
             <p className="text-foreground/70 mb-1 leading-relaxed">
-              IT Infrastructure & Networking.
+              {t.footer.role}
             </p>
             <p className="text-foreground/70 mb-8 leading-relaxed">
-              Diseño arquitecturas, construyo soluciones y me aseguro de que corran bien en producción.
+              {t.footer.bio}
             </p>
             
             <div className="flex items-center space-x-6 text-sm font-medium">
@@ -77,10 +81,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-foreground/50 font-mono">
           <div>
-            &copy; {currentYear} Lucca Nicolás Matienzo
+            &copy; {currentYear} {t.footer.name}
           </div>
           <div>
-            Hecho con <span className="text-primary font-medium">Next.js</span> - en Tucumán, Argentina <span className="opacity-70 ml-1">AR</span>
+            {t.footer.madeWith} <span className="text-primary font-medium">Next.js</span> - {t.footer.in} <span className="opacity-70 ml-1">AR</span>
           </div>
         </div>
       </div>

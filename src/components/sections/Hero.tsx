@@ -1,37 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Hero() {
-  return (
-    <section id="inicio" className="relative min-h-[60vh] flex flex-col justify-center pt-32 pb-12 overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-blue-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-      
-      <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col items-start justify-center">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 text-sm md:text-base font-medium text-foreground/70 mb-8 border-b border-white/10 pb-4 w-full"
-        >
-          <span className="font-semibold text-foreground tracking-wide">Lucca Nicolás Matienzo</span>
-          <span className="hidden sm:inline">—</span>
-          <span>Computer Engineer | IT Infrastructure & Networking | Full-Stack Developer</span>
-        </motion.div>
+  const { t } = useLanguage();
 
-        <motion.h1 
+  return (
+    <section id="inicio" className="min-h-screen flex flex-col justify-center pt-20 pb-10">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        
+        {/* Name & Short Description row */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] max-w-5xl"
+          transition={{ duration: 0.5 }}
+          className="mb-12 md:mb-16"
         >
-          Construyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">software</span><br /> 
-          y diseño infraestructura<br />
-          IT robusta.
-        </motion.h1>
+          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-sm md:text-base text-foreground/80 font-medium">
+            <h2 className="text-primary font-bold tracking-wide">
+              {t.hero.titleName}
+            </h2>
+            <span className="hidden md:inline-block text-foreground/30">—</span>
+            <p>
+              {t.hero.titleRole}
+            </p>
+          </div>
+        </motion.div>
+        
+        {/* Main Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="max-w-5xl"
+        >
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-foreground tracking-tighter leading-[1.1] mb-8">
+            {t.hero.headlinePart1}{" "}
+            <span className="text-primary/70">{t.hero.headlinePart2}</span>{" "}
+            {t.hero.headlinePart3}{" "}
+            <span className="text-foreground">{t.hero.headlinePart4}</span>{" "}
+            <br className="hidden md:block" />
+            <span className="text-primary">{t.hero.headlinePart5}</span>
+          </h1>
+        </motion.div>
+
       </div>
     </section>
   );

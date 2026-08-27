@@ -3,23 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Moon, Sun } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
-
-const navLinks = [
-  { name: "sobre mí", href: "#sobre-mi" },
-  { name: "experiencia", href: "#experiencia" },
-  { name: "proyectos", href: "#proyectos" },
-  { name: "stack", href: "#stack" },
-  { name: "contacto", href: "#contacto" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [lang, setLang] = useState("ES");
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
@@ -35,6 +28,14 @@ export default function Navbar() {
     setTheme(currentTheme === "dark" ? "light" : "dark");
   };
 
+  const navLinks = [
+    { name: t.nav.about, href: "#sobre-mi" },
+    { name: t.nav.experience, href: "#experiencia" },
+    { name: t.nav.projects, href: "#proyectos" },
+    { name: t.nav.stack, href: "#stack" },
+    { name: t.nav.contact, href: "#contacto" },
+  ];
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -44,7 +45,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <Link href="#inicio" className="text-2xl font-bold text-primary tracking-tighter">
+        <Link href="#inicio" className="text-2xl font-bold text-primary tracking-tighter z-50">
           LM<span className="text-foreground">.</span>
         </Link>
 
@@ -65,7 +66,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-4 border-l border-foreground/10 pl-6">
             {/* Language Toggle */}
             <div className="flex items-center bg-foreground/5 rounded-full p-1 border border-foreground/10">
-              {["ES", "EN"].map((l) => (
+              {(["ES", "EN"] as const).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
@@ -93,7 +94,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center space-x-4 md:hidden z-50">
           <button 
             onClick={toggleTheme}
             className="w-9 h-9 flex items-center justify-center rounded-full border border-foreground/10 text-foreground/70 bg-foreground/5 transition-all"
@@ -101,7 +102,7 @@ export default function Navbar() {
             {mounted && (theme === "dark" || (theme === "system" && systemTheme === "dark")) 
               ? <Sun size={16} /> 
               : <Moon size={16} />
-            }
+          }
           </button>
           <button
             className="text-foreground hover:text-primary transition"
@@ -113,40 +114,45 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Nav */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl shadow-xl flex flex-col items-center py-6 space-y-6 md:hidden border-b border-foreground/10"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-          
-          {/* Mobile Language Toggle */}
-          <div className="flex items-center bg-foreground/5 rounded-full p-1 border border-foreground/10 mt-4">
-            {["ES", "EN"].map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={`text-sm font-bold px-4 py-2 rounded-full transition-colors ${
-                  lang === l ? "bg-primary text-background" : "text-foreground/60 hover:text-foreground"
-                }`}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-0 left-0 w-full min-h-screen bg-background/95 backdrop-blur-xl shadow-xl flex flex-col items-center justify-center space-y-8 md:hidden"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="text-2xl font-medium text-foreground hover:text-primary transition-colors"
               >
-                {l}
-              </button>
+                {link.name}
+              </Link>
             ))}
-          </div>
-        </motion.div>
-      )}
+            
+            {/* Mobile Language Toggle */}
+            <div className="flex items-center bg-foreground/5 rounded-full p-1 border border-foreground/10 mt-8">
+              {(["ES", "EN"] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => {
+                    setLang(l);
+                    setIsOpen(false);
+                  }}
+                  className={`text-lg font-bold px-6 py-2 rounded-full transition-colors ${
+                    lang === l ? "bg-primary text-background" : "text-foreground/60 hover:text-foreground"
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
