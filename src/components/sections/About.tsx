@@ -29,7 +29,8 @@ export default function About() {
                 alt="Lucca Nicolás Matienzo" 
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 224px, 256px"
+                sizes="(max-width: 768px) 400px, 500px"
+                quality={100}
                 priority
               />
             </div>
