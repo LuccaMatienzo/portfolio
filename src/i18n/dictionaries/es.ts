@@ -8,7 +8,7 @@ export const es = {
   },
   hero: {
     titleName: "Lucca Nicolás Matienzo",
-    titleRole: "Computer Engineer | IT Infrastructure & Networking | Full-Stack Developer",
+    titleRole: "Ingeniero en Computación | Infraestructura IT y Redes | Desarrollador Full-Stack",
     headlinePart1: "Construyo",
     headlinePart2: "software",
     headlinePart3: "y diseño",
