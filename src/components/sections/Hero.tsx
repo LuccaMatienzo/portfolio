@@ -38,7 +38,7 @@ export default function Hero() {
           >
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black text-foreground tracking-tighter leading-[1.05]">
               {t.hero.headlinePart1}{" "}
-              <span className="text-primary/70">{t.hero.headlinePart2}</span>{" "}
+              <span className="text-foreground">{t.hero.headlinePart2}</span>{" "}
               {t.hero.headlinePart3}{" "}
               <span className="text-foreground">{t.hero.headlinePart4}</span>{" "}
               <br className="hidden md:block" />
@@ -81,7 +81,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 mt-auto border-t border-foreground/10"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 mt-auto border-t border-foreground/10"
         >
           {t.hero.stats.map((stat, index) => (
             <div key={index} className="flex flex-col">
