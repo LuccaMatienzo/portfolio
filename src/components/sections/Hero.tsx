@@ -81,7 +81,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 mt-auto border-t border-foreground/10"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 mt-auto"
         >
           {t.hero.stats.map((stat, index) => (
             <div key={index} className="flex flex-col">
