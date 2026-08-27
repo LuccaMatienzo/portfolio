@@ -15,10 +15,30 @@ export const en: Dictionary = {
     headlinePart2: "software",
     headlinePart3: "and design",
     headlinePart4: "robust",
-    headlinePart5: "IT infrastructure."
+    headlinePart5: "IT infrastructure.",
+    description: "Computer Engineer. I develop end-to-end web applications with React, Next.js and relational databases — and I also design, implement and operate the infrastructure where they run.",
+    buttons: {
+      workTogether: "Let's work together",
+      viewExperience: "View my experience",
+      downloadCV: "Download CV"
+    },
+    stats: [
+      {
+        value: "1+",
+        label: "years in production environments"
+      },
+      {
+        value: "4+",
+        label: "projects delivered"
+      },
+      {
+        value: "ES / EN",
+        label: "bilingual · remote work"
+      }
+    ]
   },
   about: {
-    sectionTitle: "01 About me",
+    sectionTitle: "03 About me",
     badge: "Open to work",
     stats: {
       roleLabel: "Current Role",
@@ -42,7 +62,7 @@ export const en: Dictionary = {
     }
   },
   experience: {
-    sectionTitle: "02 Experience",
+    sectionTitle: "01 Experience",
     sectionSubtitle: "Professional career and roles performed.",
     jobs: [
       {
@@ -66,7 +86,7 @@ export const en: Dictionary = {
     ]
   },
   projects: {
-    sectionTitle: "03 Projects",
+    sectionTitle: "02 Projects",
     sectionSubtitle: "Production projects and software architecture.",
     list: [
       {

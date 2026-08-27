@@ -13,10 +13,30 @@ export const es = {
     headlinePart2: "software",
     headlinePart3: "y diseño",
     headlinePart4: "infraestructura IT",
-    headlinePart5: "robusta."
+    headlinePart5: "robusta.",
+    description: "Ingeniero en Computación. Desarrollo aplicaciones web de punta a punta con React, Next.js y bases de datos relacionales — y también diseño, implemento y opero la infraestructura donde corren.",
+    buttons: {
+      workTogether: "Trabajemos juntos",
+      viewExperience: "Ver mi experiencia",
+      downloadCV: "Descargar CV"
+    },
+    stats: [
+      {
+        value: "1+",
+        label: "años en entornos productivos"
+      },
+      {
+        value: "4+",
+        label: "proyectos entregados"
+      },
+      {
+        value: "ES / EN",
+        label: "bilingüe · trabajo remoto"
+      }
+    ]
   },
   about: {
-    sectionTitle: "01 Sobre mí",
+    sectionTitle: "03 Sobre mí",
     badge: "Abierto a trabajar",
     stats: {
       roleLabel: "Rol Actual",
@@ -40,7 +60,7 @@ export const es = {
     }
   },
   experience: {
-    sectionTitle: "02 Experiencia",
+    sectionTitle: "01 Experiencia",
     sectionSubtitle: "Trayectoria profesional y roles desempeñados.",
     jobs: [
       {
@@ -64,7 +84,7 @@ export const es = {
     ]
   },
   projects: {
-    sectionTitle: "03 Proyectos",
+    sectionTitle: "02 Proyectos",
     sectionSubtitle: "Proyectos en producción y arquitectura de software.",
     list: [
       {
