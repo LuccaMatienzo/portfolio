@@ -29,7 +29,7 @@ export default function Section({ id, title, subtitle, children, className = "" 
                 <h2 className="text-lg md:text-xl font-medium text-primary tracking-wide">
                   {title}
                 </h2>
-                <div className="flex-grow h-px bg-white/10"></div>
+                <div className="flex-grow h-px bg-foreground/10"></div>
               </div>
             )}
             {subtitle && (
