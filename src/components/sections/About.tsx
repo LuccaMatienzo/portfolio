@@ -102,7 +102,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4"
           >
-            <a href="/cv_lucca_matienzo.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-background px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-lg">
+            <a href={t.cvFile} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-background px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-lg">
               <span>{t.about.buttons.downloadCV}</span>
               <Download size={18} />
             </a>

@@ -69,7 +69,7 @@ export default function Hero() {
               <a href="#experiencia" className="bg-transparent border border-foreground text-foreground px-6 py-3 rounded-full font-semibold hover:bg-foreground hover:text-background transition-colors">
                 {t.hero.buttons.viewExperience}
               </a>
-              <a href="/cv_lucca_matienzo.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground font-semibold hover:text-primary transition-colors pl-2">
+              <a href={t.cvFile} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground font-semibold hover:text-primary transition-colors pl-2">
                 {t.hero.buttons.downloadCV} <span className="text-xl leading-none">↓</span>
               </a>
             </motion.div>

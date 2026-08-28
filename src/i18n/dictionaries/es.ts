@@ -1,4 +1,5 @@
 export const es = {
+  cvFile: "/CV_ES_Matienzo_Lucca_Nicolás.pdf",
   nav: {
     about: "sobre mí",
     experience: "experiencia",
