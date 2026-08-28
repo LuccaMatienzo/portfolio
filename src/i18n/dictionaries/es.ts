@@ -91,6 +91,7 @@ export const es = {
         id: 1,
         title: "Disfraces Ly",
         description: "Plataforma e-commerce completa con sistema de gestión de inventario, pasarela de pagos integrada y panel de administración en tiempo real.",
+        image: "/disfracesly.png",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
         links: [
           { text: "Ver Tienda", url: "https://disfracesly.com.ar/" },

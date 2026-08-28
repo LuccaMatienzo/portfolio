@@ -27,9 +27,8 @@ export default function Projects() {
             <div className="w-full lg:w-1/2 relative group">
               <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative aspect-video rounded-xl overflow-hidden border border-foreground/10 bg-foreground/5 shadow-2xl">
-                {/* Note: Project images are not in dictionary. Assuming same image. */}
                 <Image 
-                  src="/disfracesly.jpeg" 
+                  src={project.image || "/disfracesly.png"} 
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

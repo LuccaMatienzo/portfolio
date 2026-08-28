@@ -93,6 +93,7 @@ export const en: Dictionary = {
         id: 1,
         title: "Disfraces Ly",
         description: "Complete e-commerce platform with inventory management system, integrated payment gateway, and real-time administration panel.",
+        image: "/disfracesly.png",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
         links: [
           { text: "View Store", url: "https://disfracesly.com.ar/" },
