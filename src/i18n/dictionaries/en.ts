@@ -1,7 +1,7 @@
 import { Dictionary } from "./es";
 
 export const en: Dictionary = {
-  cvFile: "/CV_EN_Matienzo_Lucca_Nicolás.pdf",
+  cvFile: "/cv_en_luccamatienzo.pdf",
   nav: {
     about: "about me",
     experience: "experience",
